@@ -308,3 +308,20 @@ body {
     top: 50%;
     left: 80%;
 }
+
+.star {
+    width: 5vw;
+    height: auto;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    cursor: default;
+    /* 初始為默認游標 */
+    z-index: 999;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px #ffffff solid;
+    padding: 2px;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); */
+}

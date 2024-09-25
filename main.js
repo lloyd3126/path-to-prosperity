@@ -35,7 +35,7 @@ $(document).ready(function() {
     // 預先載入 MP3 文件
     var sellHouseSound = new Audio('./static/sell_house.mp3');
     sellHouseSound.load(); // 預先加載音頻
-    
+
     // 預先載入 MP3 文件
     var diceSound = new Audio('./static/dice.mp3');
     diceSound.load(); // 預先加載音頻
@@ -145,7 +145,6 @@ $(document).ready(function() {
 
     // 保險選項列表
     var insuranceList = [
-        "保險：目前有 0 張保險卡",
         "保險：目前有 1 張保險卡",
         "保險：目前有 2 張保險卡",
         "保險：目前有 3 張保險卡",
@@ -417,7 +416,7 @@ $(document).ready(function() {
     // 添加預設選項
     selectSave.append($('<option>', {
         value: '0',
-        text: '選擇目前儲蓄的金額'
+        text: '儲蓄：利率 10% / 已存入 0 元 / 利息 0 元'
     }));
     $.each(saveList, function(index, round) {
         selectSave.append($('<option>', {
@@ -457,7 +456,7 @@ $(document).ready(function() {
     // 添加預設選項
     selectInsurance.append($('<option>', {
         value: '0',
-        text: '選擇目前擁有的保險張數'
+        text: '保險：目前有 0 張保險卡'
     }));
     $.each(insuranceList, function(index, round) {
         selectInsurance.append($('<option>', {
@@ -780,14 +779,14 @@ $(document).ready(function() {
                 'transform': `rotateX(${720*dice1ClickNum+0}deg) rotateY(-${360*dice1ClickNum+450}deg) rotateZ(-${360*dice1ClickNum+1440}deg)`,
             });
         }
-        
+
     }
-    
+
     // 風險骰子
     $('#risk-dice').click(function () {
         $('#riskDiceModal').modal('show');
     });
-    
+
     var dice2ClickNum = 0
     var $elDiceTwo = $('#dice2');
     var lastDiceTwo = 0
@@ -838,9 +837,9 @@ $(document).ready(function() {
                 'transform': `rotateX(${720*dice2ClickNum+0}deg) rotateY(-${360*dice2ClickNum+450}deg) rotateZ(-${360*dice2ClickNum+1440}deg)`,
             });
         }
-        
+
     }
-    
+
     // 重新一局功能
 
     $('#reset-game').click(function () {
@@ -1052,5 +1051,62 @@ $(document).ready(function() {
     updateTotalRent();
     updateAssetsExcludingCash();
     updateTotalAssets();
+
+    function makeDraggable($element) {
+        var isDragging = false;
+        var offsetX, offsetY;
+
+        $element.on('mousedown touchstart', function(e) {
+            e.preventDefault();
+
+            var clientX, clientY;
+            if (e.type === 'touchstart') {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+
+            offsetX = clientX - $element.offset().left;
+            offsetY = clientY - $element.offset().top;
+
+            if (!isDragging) {
+                $(document).on('mousemove touchmove', onMove);
+                $element.css('cursor', 'grab');
+                isDragging = true;
+            } else {
+                $(document).off('mousemove touchmove', onMove);
+                $element.css('cursor', 'default');
+                isDragging = false;
+            }
+        });
+
+        function onMove(e) {
+            var clientX, clientY;
+            if (e.type === 'touchmove') {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+
+            $element.css({
+                left: clientX - offsetX + 'px',
+                top: clientY - offsetY + 'px'
+            });
+        }
+
+        $(document).on('mouseup touchend', function() {
+            if (isDragging) {
+                $(document).off('mousemove touchmove', onMove);
+                $element.css('cursor', 'default');
+                isDragging = false;
+            }
+        });
+    }
+
+    makeDraggable($('#star'));
 
 });
