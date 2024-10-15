@@ -1,42 +1,44 @@
 $(document).ready(function () {
   // 預先載入 MP3 文件
-  var selectGameStageSound = new Audio('select_game_stage.mp3');
+  var selectGameStageSound = new Audio('./static/select_game_stage.mp3');
   selectGameStageSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var selectInsuranceStageSound = new Audio('select_insurance_stage.mp3');
+  var selectInsuranceStageSound = new Audio(
+    './static/select_insurance_stage.mp3'
+  );
   selectInsuranceStageSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var selectStockStageSound = new Audio('select_stock_stage.mp3');
+  var selectStockStageSound = new Audio('./static/select_stock_stage.mp3');
   selectStockStageSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var selectHouseStageSound = new Audio('select_house_stage.mp3');
+  var selectHouseStageSound = new Audio('./static/select_house_stage.mp3');
   selectHouseStageSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var selectSaveSound = new Audio('select_save.mp3');
+  var selectSaveSound = new Audio('./static/select_save.mp3');
   selectSaveSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var buyStockSound = new Audio('buy_stock.mp3');
+  var buyStockSound = new Audio('./static/buy_stock.mp3');
   buyStockSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var buyHouseSound = new Audio('buy_house.mp3');
+  var buyHouseSound = new Audio('./static/buy_house.mp3');
   buyHouseSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var sellStockSound = new Audio('sell_stock.mp3');
+  var sellStockSound = new Audio('./static/sell_stock.mp3');
   sellStockSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var sellHouseSound = new Audio('sell_house.mp3');
+  var sellHouseSound = new Audio('./static/sell_house.mp3');
   sellHouseSound.load(); // 預先加載音頻
 
   // 預先載入 MP3 文件
-  var diceSound = new Audio('dice.mp3');
+  var diceSound = new Audio('./static/dice.mp3');
   diceSound.load(); // 預先加載音頻
 
   var isDropdownOpen = false;
